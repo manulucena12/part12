@@ -1,0 +1,5 @@
+docker run -it debian bash
+mkdir -p /usr/src/app
+cd usr/src/app
+touch index.js
+exit
