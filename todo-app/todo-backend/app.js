@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+require('dotenv').config()
 
 const indexRouter = require('./routes/index');
 const todosRouter = require('./routes/todos');
@@ -14,5 +15,9 @@ app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/todos', todosRouter);
+
+app.listen(3002, () => {
+    console.log('Server running')
+})
 
 module.exports = app;

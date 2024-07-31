@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 
 COPY --chown=node:node . .
 
+COPY .env .
+
 RUN npm ci 
   
 USER node

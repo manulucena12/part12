@@ -3,9 +3,13 @@ const { Todo } = require('../mongo')
 const router = express.Router();
 
 /* GET todos listing. */
-router.get('/', async (_, res) => {
-  const todos = await Todo.find({})
-  res.send(todos);
+router.get('/', async (req, res) => {
+  try {
+    const todos = await Todo.find({});
+    res.send(todos);
+  } catch (error) {
+    res.status(500).send({ error: 'An error occurred while fetching todos.' });
+  }
 });
 
 /* POST todo to listing. */
