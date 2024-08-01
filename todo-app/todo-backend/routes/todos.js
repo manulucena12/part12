@@ -47,6 +47,18 @@ singleRouter.put('/', async (req, res) => {
   res.sendStatus(405); // Implement this
 });
 
+router.get('/statics', async (req, res) => {
+  try {
+    const todos = await Todo.find({});
+    const pendings = todos.filter(t => t.done === false)
+    res.send({
+      added_todos: pendings.length
+    })
+  } catch (error) {
+    res.status(500).send({ error: 'An error occurred while fetching todos.' });
+  }
+});
+
 router.use('/:id', findByIdMiddleware, singleRouter)
 
 
