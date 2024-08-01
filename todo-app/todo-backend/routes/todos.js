@@ -1,6 +1,7 @@
 const express = require('express');
 const { Todo } = require('../mongo')
 const router = express.Router();
+const { getAsync, setAsync } = require('../redis/index');
 
 /* GET todos listing. */
 router.get('/', async (req, res) => {
@@ -49,11 +50,21 @@ singleRouter.put('/', async (req, res) => {
 
 router.get('/statics', async (req, res) => {
   try {
-    const todos = await Todo.find({});
-    const pendings = todos.filter(t => t.done === false)
-    res.send({
-      added_todos: pendings.length
-    })
+    const pendingCount = await getAsync('pending_todos');
+
+    if (pendingCount !== null) {
+      res.send({
+        added_todos: parseInt(pendingCount, 10)
+      });
+    } else {
+      const todos = await Todo.find({});
+      const pendings = todos.filter(t => t.done === false);
+      const pendingsCount = pendings.length;
+      await setAsync('pending_todos', pendingsCount); 
+      res.send({
+        added_todos: pendingsCount
+      });
+    }
   } catch (error) {
     res.status(500).send({ error: 'An error occurred while fetching todos.' });
   }

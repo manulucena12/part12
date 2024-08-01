@@ -1,0 +1,13 @@
+docker ps
+
+docker exec -it todo-backend-redis-1 bash
+
+redis-cli
+
+keys *
+
+GET pending_todos
+
+SET pending_todos "9001"
+
+DEL pending_todos
