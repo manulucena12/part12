@@ -3,6 +3,7 @@ import axios from '../util/apiClient'
 
 import List from './List'
 import Form from './Form'
+import { TodoComponent } from './Todo'
 
 const TodoView = () => {
   const [todos, setTodos] = useState([])
@@ -39,6 +40,7 @@ const TodoView = () => {
       <h1>Todos</h1>
       <Form createTodo={createTodo} />
       <List todos={todos} deleteTodo={deleteTodo} completeTodo={completeTodo} />
+      <TodoComponent todos={todos} />
     </>
   )
 }

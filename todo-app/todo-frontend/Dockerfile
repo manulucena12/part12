@@ -6,6 +6,8 @@ COPY . .
 
 ENV VITE_BACKEND_URL=http://localhost:3000
 
+RUN npm test
+
 RUN npm ci && npm run build
 
 FROM nginx
