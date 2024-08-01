@@ -1,0 +1,19 @@
+docker-compose up --build
+
+dockerps
+
+docker exec -it todo-backend-mongo-1 bash
+
+mongosh
+
+db.auth('root', 'example')
+ 
+show dbs
+
+use the_database
+
+show collections
+
+db.todos.find({})
+
+db.todos.insertOne({text: 'New task', done:false})
