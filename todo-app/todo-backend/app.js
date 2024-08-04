@@ -17,7 +17,7 @@ app.use('/', indexRouter);
 app.use('/todos', todosRouter);
 
 app.listen(3002, () => {
-    console.log('Server running')
+    console.log('Server running on http://localhost:3002')
 })
 
 module.exports = app;

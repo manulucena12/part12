@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon --legacy-watch app.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -16,6 +16,6 @@
     "redis": "^3.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.22"
   }
 }

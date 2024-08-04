@@ -7,7 +7,7 @@ let visits = 0
 
 /* GET index data. */
 router.get('/', async (req, res) => {
-  visits++
+  visits+
 
   res.send({
     ...configs,
